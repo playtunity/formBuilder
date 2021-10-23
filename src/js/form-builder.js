@@ -283,6 +283,7 @@ const FormBuilder = function (opts, element, $) {
       return {
         selected: false,
         label,
+        price:0,
         value: hyphenCase(label),
       }
     }
@@ -322,7 +323,7 @@ const FormBuilder = function (opts, element, $) {
   }
 
   const defaultFieldAttrs = type => {
-    const defaultAttrs = ['required', 'label', 'description', 'placeholder', 'className', 'name', 'access', 'value']
+    const defaultAttrs = ['required', 'label', 'description', 'placeholder', 'className', 'name', 'access', 'value','price']
     const noValFields = ['header', 'paragraph', 'file', 'autocomplete'].concat(d.optionFields)
 
     const valueField = !noValFields.includes(type)
@@ -409,6 +410,7 @@ const FormBuilder = function (opts, element, $) {
       name: isHidden => textAttribute('name', values, isHidden),
       value: () => textAttribute('value', values),
       maxlength: () => numberAttribute('maxlength', values),
+      price: () => numberAttribute('price', values),
       access: () => {
         const rolesDisplay = values.role ? 'style="display:block"' : ''
         const availableRoles = [`<div class="available-roles" ${rolesDisplay}>`]
@@ -1353,7 +1355,7 @@ const FormBuilder = function (opts, element, $) {
       isMultiple = $firstOption.attr('type') === 'checkbox'
     }
 
-    const optionTemplate = { selected: false, label: '', value: '' }
+    const optionTemplate = { selected: false, label: '', value: ''  , price:0}
     const $sortableOptions = $('.sortable-options', $optionWrap)
     const optionData = config.opts.onAddOption(optionTemplate, {
       type,

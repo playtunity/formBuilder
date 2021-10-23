@@ -205,7 +205,7 @@ jQuery(function ($) {
   }
 
   // test disabledAttrs
-  const disabledAttrs = ['placeholder', 'name']
+  const disabledAttrs = ['placeholder','readonly','subtype','access','className','required','other']
 
   const fbOptions = {
     defaultFields: [
@@ -233,25 +233,25 @@ jQuery(function ($) {
     onAddField: fieldId => {
       setCurrentFieldIdValues(fieldId)
     },
-    onAddOption: (optionTemplate, { index }) => {
-      optionTemplate.label = optionTemplate.label || `Option ${index + 1}`
-      optionTemplate.value = optionTemplate.value || `option-${index + 1}`
+    // onAddOption: (optionTemplate, { index }) => {
+    //   optionTemplate.label = optionTemplate.label || `Option ${index + 1}`
+    //   optionTemplate.value = optionTemplate.value || `option-${index + 1}`
 
-      return optionTemplate
-    },
+    //   return optionTemplate
+    // },
     onClearAll: () => window.sessionStorage.removeItem('formData'),
     stickyControls: {
       enable: true,
     },
     sortableControls: true,
-    fields: fields,
+    fields: [],
     templates: templates,
-    inputSets: inputSets,
+    inputSets: [],
     typeUserDisabledAttrs: typeUserDisabledAttrs,
     typeUserAttrs: typeUserAttrs,
     disableInjectedStyle: false,
     actionButtons: actionButtons,
-    disableFields: ['autocomplete', 'custom-tinymce'],
+    disableFields: ['autocomplete', 'custom-tinymce','hidden','date','file'],
     replaceFields: replaceFields,
     disabledFieldButtons: {
       text: ['copy'],
@@ -260,7 +260,7 @@ jQuery(function ($) {
     i18n: {
       override: {
         [defaultLocale]: {
-          number: 'Big Numbers',
+          number: 'Numbers',
         },
       },
     },
@@ -332,9 +332,9 @@ jQuery(function ($) {
     }
 
     const actionApi = document.getElementById('action-api')
-    actionApi.appendChild(generateActionTable(actions, columns))
+    // actionApi.appendChild(generateActionTable(actions, columns))
     const demoApi = document.getElementById('demo-api')
-    demoApi.appendChild(generateActionTable(demoActions, columns))
+    // demoApi.appendChild(generateActionTable(demoActions, columns))
 
     if (formData && formData !== '[]') {
       const setFormDataInputValue = document.getElementById('setData-value')
